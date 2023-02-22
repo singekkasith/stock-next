@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Link from 'next/link'
 
 // Step 2: This component is rendered from the server (Server-Side Rendering) SSR
 export default function Blog({ blog }) {
