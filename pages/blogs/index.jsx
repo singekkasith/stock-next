@@ -26,8 +26,8 @@ export default function Home({blogs}) {
         })
         .then(res => res.json())
         .then(data => {
-            alert(" Delete " + id)
-            window.location.reload(false)
+            //alert(" Delete " + id)
+            window.location.reload(false);
         })
     }
 
@@ -44,7 +44,7 @@ export default function Home({blogs}) {
                             <tr key={blog._id}>
                                 <td>
                                     <Link href={`/blogs/${blog._id}`}>
-                                        <li key={blog._id}> {blog.title}</li>
+                                        {blog.title}
                                     </Link>
                                 </td>
                                 <td>

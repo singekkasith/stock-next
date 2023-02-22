@@ -8,7 +8,7 @@ export default function Blog({ blog }) {
         <div>
           <p>Blog not found</p>
           <Link href="/blogs">Back</Link>
-          </div>
+        </div>
     );
 
     return (
@@ -18,6 +18,7 @@ export default function Blog({ blog }) {
       </Head>
       <h1>{blog.title}</h1>
       <p>{blog.content}</p>
+      <Link href="/blogs">Back</Link>
     </>
   )
 }
@@ -28,5 +29,6 @@ export async function getServerSideProps({ params }) {
   const res = await fetch(`http://localhost:3000/api/blogs/articles/${params.id}`)
   const blog = await res.json()
   console.debug('blog 1', blog)
-  return { props: { blog: blog[0] } }
+  return { props: { blog } }
+  //return { props: { blog: blog[0] } }
 }
