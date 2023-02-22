@@ -1,18 +1,17 @@
 import Head from "next/head"
-import Link from 'next/link'
+import Link from "next/link"
 
 // Step 2: This component is rendered from the server (Server-Side Rendering) SSR
 export default function Blog({ blog }) {
-    console.log('blog 2', blog)
+  console.log('blog 2', blog)
+  if (!blog) return (
+    <div>
+      <p>Blog not found</p>
+      <Link href="/blogs">Back</Link>
+      </div>
+  );
 
-    if (!blog) return (
-        <div>
-          <p>Blog not found</p>
-          <Link href="/blogs">Back</Link>
-        </div>
-    );
-
-    return (
+  return (
     <>
       <Head>
         <title>{blog.title}</title>
@@ -31,5 +30,4 @@ export async function getServerSideProps({ params }) {
   const blog = await res.json()
   console.debug('blog 1', blog)
   return { props: { blog } }
-  //return { props: { blog: blog[0] } }
 }
