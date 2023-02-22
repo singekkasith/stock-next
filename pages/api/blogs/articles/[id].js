@@ -11,7 +11,7 @@ export default async function handler(req, res) {
     const id = req.query.id
     if (req.method === 'GET') {
         //Get only one document
-        const doc = await Article.find({ _id: id}) //_id is the id in every docs so when call we can get 1 document not all
+        const doc = await Article.findOne({ _id: id}) //_id is the id in every docs so when call we can get 1 document not all
         res.status(200).json(doc)
     } else if (req.method === 'DELETE') {
         const deletedDoc = await Article.deleteOne({ _id: id})

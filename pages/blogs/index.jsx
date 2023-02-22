@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-export default function Home({blogs}) {
+export default function Home({ blogs }) {
 
     /*  This is for the Client Side Fetching
         const [blogs, setBlogs] = useState([]);
@@ -19,7 +19,7 @@ export default function Home({blogs}) {
         }, [])
     */
     function deleteBlog(id) {
-        alert("Deleting" + id)
+        //alert("Deleting" + id)
         fetch(`http://localhost:3000/api/blogs/articles/${id}`,
         {
             method: 'DELETE'
