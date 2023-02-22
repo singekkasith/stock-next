@@ -15,7 +15,7 @@ export default async function handler(req, res) {
         res.status(200).json(doc)
     } else if (req.method === 'DELETE') {
         const deletedDoc = await Article.deleteOne({ _id: id})
-        res.status(200).send(deletedDoc)
+        res.status(200).json(deletedDoc)
     } else if (req.method === 'PUT'){
         console.log('id',req.query.id)
         console.log(req.body)
