@@ -1,6 +1,7 @@
 import { connect, model, models, Schema } from "mongoose"
-//const connectionString = 'mongodb+srv://yaboi:U2P8sC52fce1IkSY@cluster0.6w6ymbz.mongodb.net/blogs'
-//const connectionString = process.env.MONGODB_URI
+
+const connectionString = 'mongodb+srv://yaboi:U2P8sC52fce1IkSY@cluster0.6w6ymbz.mongodb.net/stock'
+//const connectionString = process.env.MONGODB_STOCK
 
 export default async function handler(req, res) {
     await connect(connectionString);
@@ -10,15 +11,15 @@ export default async function handler(req, res) {
     const id = req.query.id
     if (req.method === 'GET') {
         // Get only one document
-        const doc = await Article.findOne({ _id: id })
+        const doc = await Product.findOne({ _id: id })
         res.status(200).json(doc)
     } else if (req.method === 'DELETE') {
-        const deletedDoc = await Article.deleteOne({ _id: id })
+        const deletedDoc = await Product.deleteOne({ _id: id })
         res.status(200).json(deletedDoc)
     } else if (req.method === 'PUT') {
         console.log('id',req.query.id)
         console.log(req.body)
-        const updatedDoc = await Article.updateOne({_id: id}, req.body)
+        const updatedDoc = await Product.updateOne({_id: id}, req.body)
         res.status(200).json(updatedDoc)
     } else {
         res.setHeader('Allow', ['GET', 'DELETE'])
@@ -28,10 +29,11 @@ export default async function handler(req, res) {
 
 
 
-const articleSchema = new Schema({
-    title: String,
-    content: String,
+const productSchema = new Schema({
+    code: String,
+    name: String,
+    price: Number,
 });
 
 console.log("Mongoose Models", models)
-const Article = models?.article || model('article', articleSchema);
+const Product = models?.product || model('product', productSchema);
